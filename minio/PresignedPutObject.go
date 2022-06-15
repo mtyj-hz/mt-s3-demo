@@ -7,7 +7,7 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
-	"github.com/minio/minio-go/v7"
+	minio "github.com/mtyj-hz/mtoss-go-sdk"
 	"net/http"
 	"net/url"
 	"time"
