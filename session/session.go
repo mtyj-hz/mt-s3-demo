@@ -5,6 +5,8 @@ import (
 	awsAls "github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
+	mtoss "github.com/mtyj-hz/mtoss-go-sdk"
+	"github.com/mtyj-hz/mtoss-go-sdk/pkg/credentials"
 )
 
 func GetSession() *s3.S3 {
@@ -28,20 +30,19 @@ func GetSession() *s3.S3 {
 	return svc
 }
 
-//
-//func GetMinioClient() *minio.Client{
-//	endpoint := "192.168.1.68:9000"
-//	accessKeyID := "YQsyBLy2E6upkYQWyjs3"
-//	secretAccessKey := "RdKbtpu5JHu0yU8qlwR6xVP45O2WMV"
-//	//accessKeyID := "4xE7yaFk2KQpq7fgBoWs"
-//	//secretAccessKey := "xE0RNDXkr15buJYE8nAdJqu7v327u8"
-//	// Initialize minio client object.
-//	minioClient, err := minio.New(endpoint, &minio.Options{
-//		Creds:  credentials.NewStaticV4(accessKeyID, secretAccessKey, ""),
-//		Secure: false,
-//	})
-//	if err != nil {
-//		return nil
-//	}
-//	return minioClient
-//}
+func GetMinioClient() *mtoss.Client {
+	endpoint := "oss.mty.wang"
+	accessKeyID := ""
+	secretAccessKey := ""
+	//accessKeyID := "4xE7yaFk2KQpq7fgBoWs"
+	//secretAccessKey := "xE0RNDXkr15buJYE8nAdJqu7v327u8"
+	// Initialize minio client object.
+	minioClient, err := mtoss.New(endpoint, &mtoss.Options{
+		Creds:  credentials.NewStaticV4(accessKeyID, secretAccessKey, ""),
+		Secure: true,
+	})
+	if err != nil {
+		return nil
+	}
+	return minioClient
+}
